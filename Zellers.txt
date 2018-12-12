@@ -1,0 +1,36 @@
+int ZellersCongruence(int q, int m, int Y){
+	
+	// q Date, m Month, Y Year
+	// RETURN - day of the week (0 = Saturday, 1 = Sunday, 2 = Monday, ..., 6 = Friday)
+	// Year = Year - 1 during January and February
+	if(m == 1){ 
+		m = 13;
+		Y = Y - 1;
+	}
+	else if(m == 2){
+		m = 14;
+		Y = Y - 1;
+	}
+	
+	//  ((13 * (m + 1)) / 5) Adjusts for the variation in the days of the month. Starting from January, 
+	//	the days in a month are {31, 28/29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}. February's 28 or
+	//	29 days is a problem, so the formula rolls January and February around to the end so February's 
+	//	short count will not cause a problem. 
+	
+	//	The overall function, mod 7 operatorname {mod} \,7}, normalizes the result to 
+	//	reside in the range of 0 to 6, which yields the index of the correct day of the week for the date being analyzed.
+	
+	//	The formula can be used proleptically, but with care for years before Year 0. To accommodate 
+	//	this, one can add a sufficient multiple of 400 Gregorian 
+			
+			
+			return((q + ((13 * (m + 1)) / 5) + Y + (Y / 4) - (Y / 100) + (Y / 400)) % 7);
+	
+
+	//	For 1 January 2000, the date would be treated as the 13th month of 1999, so the values would be:
+	//	So the formula evaluates as ( 1 + 36 + 99 + 24 + 4 ? 38 ) mod 7 = 126 mod 7 = 0 = Saturday
+	
+	//	However, for 1 March 2000, the date is treated as the 3rd month of 2000, so the values become
+	//	so the formula evaluates as
+	//	( 1 + 10 + 0 + 0 + 5 ? 40 ) mod 7 = ? 24 mod 7 = 4 = Wednesday
+}
